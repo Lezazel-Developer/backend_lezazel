@@ -19,7 +19,7 @@ class Product extends Model
         'images',
     ];
 
-    public function category()  
+    public function category()
     {
         return $this->belongsTo(Category::class);
     }
@@ -28,4 +28,20 @@ class Product extends Model
     {
         return $this->hasMany(Cart::class);
     }
+
+    public function getImagesAttribute($value)
+    {
+        // Decode JSON array of image paths
+        $imagePaths = json_decode($value, true);
+    
+        // Create array of image URLs
+        $imageURLs = [];
+        foreach ($imagePaths as $path) {
+            // Ubah path relatif menjadi URL yang valid
+            $imageURLs[] = asset($path);
+        }
+    
+        return $imageURLs;
+    }
+    
 }

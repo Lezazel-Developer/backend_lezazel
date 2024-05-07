@@ -13,7 +13,7 @@
         </div>
         <ul class="sidebar-menu">
             <li class="menu-header">Dashboard</li>
-            <li class="nav-item dropdown {{ $type_menu === 'dashboard' || Request::is('users.*') || Request::is('categories.*') ? 'active' : '' }}">
+            <li class="nav-item dropdown {{ $type_menu === 'dashboard' || Request::is('users.*') || Request::is('categories.*') || Request::is('products.*') ? 'active' : '' }}">
                 <a href="javascript:void(0)" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Dashboard</span></a>
                 <ul class="dropdown-menu">
                     <li class='{{ Request::is('home') ? 'active' : '' }}'>
@@ -25,6 +25,10 @@
                        {{-- Category --}}
                     <li class="{{ request()->segment(1) === 'categories' ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('categories.index') }}">Categories</a>
+                    </li>
+                    {{-- Product --}}
+                    <li class="{{ request()->segment(1) === 'products' ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('products.index') }}">Products</a>
                     </li>
                 </ul>
             </li>
